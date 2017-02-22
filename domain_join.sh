@@ -428,9 +428,9 @@ session optional			pam_umask.so
 session	required	pam_unix.so
 session	optional	pam_winbind.so
 session	optional	pam_sss.so
+session optional        pam_mkhomedir.so
 session	optional	pam_mount.so
 session	optional	pam_systemd.so
-session	optional	pam_mkhomedir.so
 # end of pam-auth-update config
 EOT
 
