@@ -12,7 +12,7 @@ echo "Enter hostname: "
 read hostname
 
 #Install prerequisites
-apt-get -y install openssh-server ntp vim ntpdate winbind samba libnss-winbind libpam-winbind krb5-locales krb5-user sssd libpam-mount cifs-utils
+apt-get -y install ntp ntpdate winbind samba libnss-winbind libpam-winbind krb5-locales krb5-user sssd libpam-mount cifs-utils
 
 #Edit network time config
 sed -i '18,21 s/^/#/' /etc/ntp.conf
