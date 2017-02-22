@@ -434,3 +434,10 @@ session	optional	pam_mkhomedir.so
 # end of pam-auth-update config
 EOT
 
+#LightDM config
+cat >/etc/lightdm/lightdm.conf.d/50-my-custom-config.conf <<EOT
+[SeatDefaults]
+greeter-hide-users=true
+greeter-show-manual-login=true
+allow-guest=false
+EOT
