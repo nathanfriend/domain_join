@@ -2,7 +2,7 @@
 Bash script to prepare an Ubuntu Mate 16.04 host for joining to a MS Active Directory Domain.
 
 ### Download and customise the script ###
-wget https://github.com/nathanfriend/domain_join/domain_join.sh
+wget https://raw.githubusercontent.com/nathanfriend/domain_join/master/domain_join.sh
 
 chmod +x domain_join.sh  
 edit lines 3 through 9 for your environment.
