@@ -23,7 +23,7 @@ sed -i "18i pool $ntp" /etc/ntp.conf
 mkdir /etc/skel/u_drive
 
 #Create PAM mount user config
-cat >/etc/skel/.pam_mount_conf.xml <<EOT
+cat >/etc/skel/.pam_mount.conf.xml <<EOT
 <?xml version="1.0" encoding="utf-8" ?>
 <pam_mount>
 <volume options="uid=%(USER),gid=100,dir_mode=0700" user="*" mountpoint="~/u_drive" path="$homeshare/%(USER)" server="$shareserver" fstype="cifs" />
