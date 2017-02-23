@@ -4,15 +4,16 @@ domain="DEVDOMAIN.COM"
 shortdomain="DEVDOMAIN"
 dcip="192.168.100.2"
 dc="DEVDC-01.DEVDOMAIN.COM"
+domainjoinuser="Administrator"
 ntp="DEVDC-01.DEVDOMAIN.COM"
 shareserver="DEVDC-01.DEVDOMAIN.COM"
 homeshare="home"
 
-echo "Enter hostname: "
-read hostname
+#Get hostname
+$(hostname)
 
 #Install prerequisites
-apt-get -y install ntp ntpdate winbind samba libnss-winbind libpam-winbind krb5-locales krb5-user sssd libpam-mount cifs-utils
+apt-get -y install ntp ntpdate winbind samba libnss-winbind libpam-winbind krb5-locales krb5-user sssd libpam-mount cifs-utils lightdm
 
 #Edit network time config
 sed -i '18,21 s/^/#/' /etc/ntp.conf
@@ -441,3 +442,20 @@ greeter-hide-users=true
 greeter-show-manual-login=true
 allow-guest=false
 EOT
+
+#Get a Kerberos token using domain credentials
+echo 'Enter AD Administrator password: '
+if kinit $domainjoinuser ; then
+        #Join AD
+        if net ads join -k ; then
+                echo '.....................'
+                echo 'Complete'
+                echo '.....................'
+        else
+                echo 'Please ensure AD variables are correct and rerun this script.'
+        fi
+else
+        echo '.....................'
+        echo 'Retry by running "kinit Administrator" followed by "net ads join -k" or the whole script again.'
+        exit
+fi
