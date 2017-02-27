@@ -15,6 +15,7 @@ if [ $# -eq 0 ]
     hostname=$(hostname)
 else
     hostname=$1
+    /bin/bash
 fi
 
 #Install prerequisites
