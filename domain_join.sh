@@ -15,7 +15,7 @@ if [ $# -eq 0 ]
     hostname=$(hostname)
 else
     hostname=$1
-    /bin/bash
+    hostnamectl set-hostname $1
 fi
 
 #Install prerequisites
