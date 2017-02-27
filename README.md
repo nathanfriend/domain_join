@@ -8,5 +8,6 @@ chmod +x domain_join.sh
 edit lines 3 through 10 for your environment.
 
 ### Run the script ###
+The script takes one argument, for the hostname.  If omitted the current hostname is used.
 sudo -s  
-./domain_join.sh
+./domain_join.sh examplehost-01

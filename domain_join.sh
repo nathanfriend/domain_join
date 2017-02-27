@@ -9,8 +9,13 @@ ntp="DEVDC-01.DEVDOMAIN.COM"
 shareserver="DEVDC-01.DEVDOMAIN.COM"
 homeshare="home"
 
-#Get hostname
-$(hostname)
+if [ $# -eq 0 ]
+  then
+    #No argument supplied, use existing hostname
+    hostname=$(hostname)
+else
+    hostname=$1
+fi
 
 #Install prerequisites
 apt-get -y install ntp ntpdate winbind samba libnss-winbind libpam-winbind krb5-locales krb5-user sssd libpam-mount cifs-utils lightdm
