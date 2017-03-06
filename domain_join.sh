@@ -18,6 +18,9 @@ else
     hostnamectl set-hostname $1
 fi
 
+#Prevent reading other users home directory
+chmod -R 701 /home
+
 #Install prerequisites
 apt-get -y install ntp ntpdate winbind samba libnss-winbind libpam-winbind krb5-locales krb5-user sssd libpam-mount cifs-utils lightdm
 
@@ -33,7 +36,7 @@ mkdir /etc/skel/u_drive
 cat >/etc/skel/.pam_mount.conf.xml <<EOT
 <?xml version="1.0" encoding="utf-8" ?>
 <pam_mount>
-<volume options="uid=%(USER),gid=100,dir_mode=0700" user="*" mountpoint="~/u_drive" path="$homeshare/%(USER)" server="$shareserver" fstype="cifs" />
+<volume options="uid=%(USER),gid=100,dir_mode=0700,vers=3.0" user="*" mountpoint="~/u_drive" path="$homeshare/%(USER)" server="$shareserver" fstype="cifs" />
 </pam_mount>
 EOT
 
